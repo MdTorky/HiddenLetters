@@ -30,7 +30,7 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ slots, activeSlotIndex
     <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 sm:gap-x-6 sm:gap-y-6 max-w-4xl mx-auto px-1 sm:px-4">
       {words.map((word, wordIndex) => (
         <div key={wordIndex} className="flex gap-1 sm:gap-2">
-          {word.map((item, itemIndex) => {
+          {word.map((item) => {
             if (item === 'apo') {
               return (
                 <div key="apo" className="flex items-end justify-center pb-1 sm:pb-2 text-white text-3xl sm:text-5xl font-extrabold mx-0.5 sm:mx-1 drop-shadow-sm">
@@ -38,7 +38,7 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ slots, activeSlotIndex
                 </div>
               );
             }
-            
+
             const index = item as number;
             const slot = slots[index];
             if (!slot) return null;
