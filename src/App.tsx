@@ -18,7 +18,7 @@ function App() {
 
   const correctCount = slots.filter((slot, i) => slot.letter === TARGET_PHRASE[i]).length;
 
-  isComplete = true;
+  // isComplete = true;
   const initializeGame = () => {
     setSlots(Array.from({ length: 20 }).map(() => ({
       id: null,
