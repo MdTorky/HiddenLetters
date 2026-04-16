@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { KeyboardDeck } from './components/KeyboardDeck';
 import { PuzzleBoard, type SlotData } from './components/PuzzleBoard';
 import { ResultReveal } from './components/ResultReveal';
-import { Heart, BookHeart } from 'lucide-react';
+import { BookHeart } from 'lucide-react';
 
 const TARGET_PHRASE = "YOUREMYONEIN8BILLION";
 
@@ -108,7 +108,7 @@ function App() {
         </motion.div>
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">The Last Letter</h1>
         <p className="text-white/80 text-sm sm:text-lg max-w-lg font-medium whitespace-pre-line">
-          {isComplete
+          {!isComplete
             // ? "Drag letters into the correct spots or use your keyboard to reveal the message."
             ? "Twenty letters, scattered for you,\nEach one holds something true.\nNumber by number, place them right,\nLet them slowly come to light.\n\nThen from each, a letter take,\nThe very first—for meaning’s sake…\nBring them together, and you will see,\nThe words I kept inside of me."
             : "Piece by piece, they aligned and formed the words I made for you"}
@@ -119,7 +119,7 @@ function App() {
 
         {/* Top: The Puzzle Board */}
         <section className="bg-white/10 p-6 sm:p-10 rounded-4xl border-[3px] border-white/30 shadow-2xl backdrop-blur-md">
-          {isComplete && (
+          {!isComplete && (
             <div className="flex justify-between items-center mb-6">
               <span className="text-sm font-bold tracking-wider text-[#dbeafe] uppercase">
                 20 Letters
@@ -131,7 +131,7 @@ function App() {
           )}
 
           <AnimatePresence mode="wait">
-            {isComplete ? (
+            {!isComplete ? (
               <motion.div
                 key="board"
                 initial={{ opacity: 0 }}
@@ -155,7 +155,7 @@ function App() {
 
         {/* Keyboard Deck */}
         <AnimatePresence mode="wait">
-          {isComplete && (
+          {!isComplete && (
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
