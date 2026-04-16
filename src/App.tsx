@@ -11,13 +11,14 @@ function App() {
   const [slots, setSlots] = useState<SlotData[]>([]);
   const [activeSlotIndex, setActiveSlotIndex] = useState<number | null>(0);
 
-  const isComplete = useMemo(() => {
+  let isComplete = useMemo(() => {
     if (slots.length === 0) return false;
     return slots.every((slot, i) => slot.letter === TARGET_PHRASE[i]);
   }, [slots]);
 
   const correctCount = slots.filter((slot, i) => slot.letter === TARGET_PHRASE[i]).length;
 
+  isComplete = true;
   const initializeGame = () => {
     setSlots(Array.from({ length: 20 }).map(() => ({
       id: null,
@@ -107,7 +108,7 @@ function App() {
           <BookHeart className="w-8 h-8 sm:w-10 sm:h-10" />
         </motion.div>
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">The Last Letter</h1>
-        <p className="text-white/80 text-sm sm:text-lg max-w-lg font-medium whitespace-pre-line">
+        <p className="text-white/80 text-sm sm:text-lg max-w-xl font-medium whitespace-pre-line">
           {!isComplete
             // ? "Drag letters into the correct spots or use your keyboard to reveal the message."
             ? "Twenty letters, scattered for you,\nEach one holds something true.\nNumber by number, place them right,\nLet them slowly come to light.\n\nThen from each, a letter take,\nThe very first—for meaning’s sake…\nBring them together, and you will see,\nThe words I kept inside of me."

@@ -151,7 +151,7 @@ export const ResultReveal: React.FC<ResultRevealProps> = ({ onRestart }) => {
                   >
                     <div className="absolute top-1 sm:top-2 left-1/2 -translate-x-1/2 w-8 sm:w-12 h-3 sm:h-4 bg-red-400/80 rotate-3 shadow-sm rounded-sm backdrop-blur-sm" />
                     <img
-                      src="/reveal.png"
+                      src="/reveal.gif"
                       alt="Glowing romantic heart"
                       className="w-48 sm:w-64 h-auto object-cover border border-slate-100"
                     />
