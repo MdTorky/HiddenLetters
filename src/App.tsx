@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { KeyboardDeck } from './components/KeyboardDeck';
 import { PuzzleBoard, type SlotData } from './components/PuzzleBoard';
 import { ResultReveal } from './components/ResultReveal';
-import { Heart } from 'lucide-react';
+import { Heart, BookHeart } from 'lucide-react';
 
 const TARGET_PHRASE = "YOUREMYONEIN8BILLION";
 
@@ -104,24 +104,25 @@ function App() {
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           className="inline-flex items-center justify-center p-3 sm:p-4 rounded-full bg-white text-cute-blue mb-2 shadow-[0_4px_0_rgba(0,0,0,0.1)]"
         >
-          <Heart className="w-8 h-8 sm:w-10 sm:h-10 fill-cute-blue" />
+          <BookHeart className="w-8 h-8 sm:w-10 sm:h-10" />
         </motion.div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">Hidden Message</h1>
-        <p className="text-white/80 text-sm sm:text-lg max-w-md font-medium">
-          {!isComplete
-            ? "Drag letters into the correct spots or use your keyboard to reveal the message."
-            : "You found the hidden message!"}
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">The Last Letter</h1>
+        <p className="text-white/80 text-sm sm:text-lg max-w-lg font-medium whitespace-pre-line">
+          {isComplete
+            // ? "Drag letters into the correct spots or use your keyboard to reveal the message."
+            ? "Twenty letters, scattered for you,\nEach one holds something true.\nNumber by number, place them right,\nLet them slowly come to light.\n\nThen from each, a letter take,\nThe very first—for meaning’s sake…\nBring them together, and you will see,\nThe words I kept inside of me."
+            : "Piece by piece, they aligned and formed the words I made for you"}
         </p>
       </header>
 
       <main className="flex-1 w-full max-w-5xl mx-auto flex flex-col z-10 space-y-8 sm:space-y-12 pb-24">
 
         {/* Top: The Puzzle Board */}
-        <section className="bg-white/10 p-6 sm:p-10 rounded-[2rem] border-[3px] border-white/30 shadow-2xl backdrop-blur-md">
+        <section className="bg-white/10 p-6 sm:p-10 rounded-4xl border-[3px] border-white/30 shadow-2xl backdrop-blur-md">
           {isComplete && (
             <div className="flex justify-between items-center mb-6">
               <span className="text-sm font-bold tracking-wider text-[#dbeafe] uppercase">
-                The Puzzle
+                20 Letters
               </span>
               <span className="text-sm font-extrabold bg-white px-4 py-1.5 rounded-full text-cute-blue shadow-sm">
                 {correctCount} / 20
@@ -130,7 +131,7 @@ function App() {
           )}
 
           <AnimatePresence mode="wait">
-            {!isComplete ? (
+            {isComplete ? (
               <motion.div
                 key="board"
                 initial={{ opacity: 0 }}
@@ -154,7 +155,7 @@ function App() {
 
         {/* Keyboard Deck */}
         <AnimatePresence mode="wait">
-          {!isComplete && (
+          {isComplete && (
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}

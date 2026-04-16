@@ -43,10 +43,10 @@ export const LetterBox: React.FC<LetterBoxProps> = ({ letter, status, isActive, 
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       className={cn(
-        "relative flex h-14 w-12 sm:h-16 sm:w-14 items-center justify-center rounded-2xl text-2xl sm:text-3xl font-bold transition-all transition-colors",
+        "relative flex h-11 w-9 sm:h-16 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl text-xl sm:text-3xl font-bold transition-all transition-colors",
         
         // Base state for cute blue theme
-        "border-[3px] shadow-[0_4px_0_rgba(0,0,0,0.1)]",
+        "border-[2px] sm:border-[3px] shadow-[0_3px_0_rgba(0,0,0,0.1)] sm:shadow-[0_4px_0_rgba(0,0,0,0.1)]",
         
         isActive && status === 'empty' && "border-white bg-white/20 scale-105 z-10 animate-pulse",
         
@@ -54,9 +54,9 @@ export const LetterBox: React.FC<LetterBoxProps> = ({ letter, status, isActive, 
         
         status === 'empty' && isActive && "border-white bg-white/30 text-white",
         
-        status === 'correct' && "border-[#86efac] bg-[#22c55e] text-white shadow-[#16a34a]",
+        status === 'correct' && "border-[#86efac] bg-[#22c55e] text-white shadow-[#16a34a] sm:shadow-[#16a34a]",
         
-        status === 'incorrect' && "border-[#fca5a5] bg-[#ef4444] text-white shadow-[#dc2626]"
+        status === 'incorrect' && "border-[#fca5a5] bg-[#ef4444] text-white shadow-[#dc2626] sm:shadow-[#dc2626]"
       )}
     >
       <span className="relative z-10 leading-none drop-shadow-sm mt-1">{letter || ''}</span>
