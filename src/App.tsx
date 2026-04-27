@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { KeyboardDeck } from './components/KeyboardDeck';
 import { PuzzleBoard, type SlotData } from './components/PuzzleBoard';
 import { ResultReveal } from './components/ResultReveal';
+import { NeonFlower } from './components/NeonFlower';
 import { BookHeart } from 'lucide-react';
 
 const TARGET_PHRASE = "YOUREMYONEIN8BILLION";
@@ -10,6 +11,7 @@ const TARGET_PHRASE = "YOUREMYONEIN8BILLION";
 function App() {
   const [slots, setSlots] = useState<SlotData[]>([]);
   const [activeSlotIndex, setActiveSlotIndex] = useState<number | null>(0);
+  const [showFlower, setShowFlower] = useState(false);
 
   let isComplete = useMemo(() => {
     if (slots.length === 0) return false;
@@ -18,7 +20,7 @@ function App() {
 
   const correctCount = slots.filter((slot, i) => slot.letter === TARGET_PHRASE[i]).length;
 
-  // isComplete = true;
+  // isComplete = true; // Kept as user set it
   const initializeGame = () => {
     setSlots(Array.from({ length: 20 }).map(() => ({
       id: null,
@@ -95,6 +97,10 @@ function App() {
     setActiveSlotIndex(index);
   };
 
+  if (showFlower) {
+    return <NeonFlower />;
+  }
+
   return (
     <div className="min-h-screen py-10 px-4 sm:px-8 flex flex-col relative overflow-x-hidden">
 
@@ -148,7 +154,10 @@ function App() {
               </motion.div>
             ) : (
               <motion.div key="result">
-                <ResultReveal onRestart={initializeGame} />
+                <ResultReveal
+                  onRestart={initializeGame}
+                  onContinue={() => setShowFlower(true)}
+                />
               </motion.div>
             )}
           </AnimatePresence>

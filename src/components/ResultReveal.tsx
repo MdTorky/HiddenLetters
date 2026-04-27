@@ -5,9 +5,10 @@ import { Heart } from 'lucide-react';
 
 interface ResultRevealProps {
   onRestart: () => void;
+  onContinue: () => void;
 }
 
-export const ResultReveal: React.FC<ResultRevealProps> = ({ onRestart }) => {
+export const ResultReveal: React.FC<ResultRevealProps> = ({ onRestart, onContinue }) => {
   const [stage, setStage] = useState<'closed' | 'opening' | 'opened'>('closed');
 
   const triggerConfetti = () => {
@@ -169,27 +170,29 @@ export const ResultReveal: React.FC<ResultRevealProps> = ({ onRestart }) => {
                     The one I will always choose and who deserve the love I have for you. Thanks for being my person.
                   </p>
                   <p className="text-lg sm:text-2xl text-slate-700 leading-relaxed font-medium">
-                    {/* I searched the whole universe, but there's no one quite like you.<br />
-                    Thank you for being my person. */}
                   </p>
-                  {/* <motion.p
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="text-xl sm:text-3xl text-rose-500 pt-6 font-extrabold">
-                    Forever Yours ❤️
-                  </motion.p> */}
                 </div>
               </div>
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.9, y: 2 }}
-              onClick={onRestart}
-              className="mt-8 px-10 py-4 rounded-full bg-white text-cute-blue border-[3px] border-transparent hover:border-[#bfdbfe] transition-all text-xl font-extrabold tracking-wide uppercase shadow-[0_6px_0_rgba(0,0,0,0.15)] active:shadow-[0_0px_0_rgba(0,0,0,0.15)]"
-            >
-              Play Again!
-            </motion.button>
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto px-4">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95, y: 2 }}
+                onClick={onRestart}
+                className="flex-1 sm:flex-none px-8 py-4 rounded-full bg-white text-cute-blue border-[3px] border-transparent hover:border-[#bfdbfe] transition-all text-xl font-extrabold tracking-wide uppercase shadow-[0_6px_0_rgba(0,0,0,0.15)] active:shadow-[0_0px_0_rgba(0,0,0,0.15)]"
+              >
+                Play Again!
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95, y: 2 }}
+                onClick={onContinue}
+                className="flex-1 sm:flex-none px-8 py-4 rounded-full bg-pink-500 text-white border-[3px] border-transparent hover:border-pink-400 transition-all text-xl font-extrabold tracking-wide uppercase shadow-[0_6px_0_rgba(0,0,0,0.15)] active:shadow-[0_0px_0_rgba(0,0,0,0.15)]"
+              >
+                Continue ✨
+              </motion.button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
